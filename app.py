@@ -3,7 +3,7 @@ import pandas as pd
 
 # Download stock data (example: Reliance Industries)
 def get_stock_data(ticker):
-    stock_data = yf.download(ticker, start="2015-01-01", end="2023-01-01")
+    stock_data = yf.download(ticker, start="2015-01-01", end="2024-10-01")
     return stock_data
 
 # Fetch the stock data for Reliance
@@ -77,3 +77,33 @@ if st.button('Predict'):
     data = get_stock_data(ticker)
     predicted_price = predict_future_price(model, data['Close'].values[-time_step:], time_step, scaler)
     st.write(f"Predicted price for {ticker}: {predicted_price[0][0]}")
+
+# Streamlit UI
+st.title("Indian Stock Price Prediction")
+
+# User input for stock ticker
+ticker = st.text_input("Enter the stock ticker (e.g., RELIANCE.NS)", "RELIANCE.NS")
+
+if st.button('Predict'):
+    data = get_stock_data(ticker)
+    predicted_price = predict_future_price(model, data['Close'].values[-time_step:], time_step, scaler)
+
+    # Display predicted price
+    st.write(f"Predicted price for {ticker}: {predicted_price[0][0]}")
+
+    # Plotting
+    plt.figure(figsize=(14, 5))
+    # Plot actual prices
+    plt.plot(data['Close'].values, color='blue', label='Actual Prices')
+    # Append the predicted price to the end of the actual prices for plotting
+    plt.plot(np.arange(len(data), len(data) + 1), predicted_price, marker='o', color='red', label='Predicted Price')
+    
+    plt.title(f'{ticker} Stock Price Prediction')
+    plt.xlabel('Days')
+    plt.ylabel('Price')
+    plt.legend()
+    plt.grid()
+    plt.tight_layout()
+
+    # Display the plot in Streamlit
+    st.pyplot(plt)
