@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Download stock data (example: Reliance Industries)
 def get_stock_data(ticker):
