@@ -2,3 +2,4 @@ yfinance
 tensorflow
 scikit-learn
 streamlit
+matplotlib
