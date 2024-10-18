@@ -78,12 +78,6 @@ if st.button('Predict'):
     predicted_price = predict_future_price(model, data['Close'].values[-time_step:], time_step, scaler)
     st.write(f"Predicted price for {ticker}: {predicted_price[0][0]}")
 
-# Streamlit UI
-st.title("Indian Stock Price Prediction")
-
-# User input for stock ticker
-ticker = st.text_input("Enter the stock ticker (e.g., RELIANCE.NS)", "RELIANCE.NS")
-
 if st.button('Predict'):
     data = get_stock_data(ticker)
     predicted_price = predict_future_price(model, data['Close'].values[-time_step:], time_step, scaler)
