@@ -1,5 +1,3 @@
-!pip install yfinance tensorflow scikit-learn streamlit
-
 import yfinance as yf
 import pandas as pd
 
