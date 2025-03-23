@@ -4,7 +4,7 @@ wheel>=0.41.0
 foil --no-binary :all:
 
 yfinance
-tensorflow
+tensorflow-cpu==2.14.0
 scikit-learn
 streamlit
 matplotlib
